@@ -1,0 +1,23 @@
+{
+    "name": "clnqcdrs/blueprint-macro",
+    "description": "Laravel Blueprint Macro",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nasrul Hazim",
+            "email": "nasrulhazim.m@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CLNQCDRS\\Blueprint\\Macro\\": "src/"
+        }
+    },
+    "require": {
+        "illuminate/database": "^5.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.5",
+        "orchestra/testbench": "~3.0"
+    }
+}
