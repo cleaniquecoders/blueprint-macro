@@ -13,6 +13,11 @@
             "CLNQCDRS\\Blueprint\\Macro\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "CLNQCDRS\\Blueprint\\Macro\\Tests\\": "tests/"
+        }
+    },
     "require": {
         "illuminate/database": "^5.5",
         "illuminate/support": "^5.5",
