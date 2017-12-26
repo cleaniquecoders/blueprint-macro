@@ -18,9 +18,12 @@ class Blueprint implements MacroContract
     public static function registerMacros()
     {
         DefaultBlueprint::macro('addForeign', function ($key, $table) {
-            $this->unsignedInteger($key)
-                ->index()
-                ->nullable();
+            return $this->unsignedInteger($key)
+                ->index();
+        });
+
+        DefaultBlueprint::macro('addNullableForeign', function ($key, $table) {
+            return $this->addForeign($key, $table)->nullable();
         });
 
         DefaultBlueprint::macro('referenceOn', function ($key, $table, $references = 'id') {
@@ -47,6 +50,10 @@ class Blueprint implements MacroContract
         DefaultBlueprint::macro('label', function () {
             $this->string('label')->nullable();
             $this->string('name')->nullable();
+        });
+
+        DefaultBlueprint::macro('description', function () {
+            $this->text('description')->nullable();
         });
 
         DefaultBlueprint::macro('expired', function () {
