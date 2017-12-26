@@ -1,5 +1,7 @@
 <?php
 
+namespace CLNQCDRS\Blueprint\Macro\Tests;
+
 use CLNQCDRS\Blueprint\Macro\Tests\TestCase;
 use Illuminate\Database\Schema\Blueprint;
 
