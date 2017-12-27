@@ -13,7 +13,6 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
         $this->artisan('migrate', [
             '--database' => 'testbench',
-            '--path'     => realpath(__DIR__ . '/database/migrations'),
         ]);
     }
 
@@ -21,6 +20,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     {
         return [
             \CLNQCDRS\Blueprint\Macro\BlueprintMacroServiceProvider::class,
+            \CLNQCDRS\Blueprint\Macro\Tests\Stubs\ServiceProvider::class,
         ];
     }
 
