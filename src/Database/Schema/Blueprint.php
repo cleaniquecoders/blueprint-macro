@@ -32,6 +32,13 @@ class Blueprint implements MacroContract
                 ->on($table);
         });
 
+        DefaultBlueprint::macro('belongsTo', function ($key, $table, $references = 'id') {
+            $this->unsignedInteger($key)->index();
+            return $this->foreign($key)
+                ->references($references)
+                ->on($table);
+        });
+
         DefaultBlueprint::macro('addAcceptance', function ($value) {
             $this->boolean('is_' . $value)->default(false);
             $this->datetime($value . '_at')->nullable();
