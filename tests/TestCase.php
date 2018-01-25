@@ -1,6 +1,6 @@
 <?php
 
-namespace CLNQCDRS\Blueprint\Macro\Tests;
+namespace CleaniqueCoders\Blueprint\Macro\Tests;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -13,14 +13,19 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
         $this->artisan('migrate', [
             '--database' => 'testbench',
-            '--path'     => realpath(__DIR__ . '/database/migrations'),
         ]);
     }
 
+    /**
+     * Get Package Providers
+     * @param  app $app App
+     * @return array  List of service providers
+     */
     protected function getPackageProviders($app)
     {
         return [
-            \CLNQCDRS\Blueprint\Macro\BlueprintMacroServiceProvider::class,
+            \CleaniqueCoders\Blueprint\Macro\BlueprintMacroServiceProvider::class,
+            \CleaniqueCoders\Blueprint\Macro\Tests\Stubs\ServiceProvider::class,
         ];
     }
 

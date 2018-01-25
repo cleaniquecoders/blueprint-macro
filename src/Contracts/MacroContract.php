@@ -1,6 +1,6 @@
 <?php
 
-namespace CLNQCDRS\Blueprint\Macro\Contracts;
+namespace CleaniqueCoders\Blueprint\Macro\Contracts;
 
 /**
  * MacroContract

@@ -1,8 +1,8 @@
 <?php
 
-namespace CLNQCDRS\Blueprint\Macro\Tests;
+namespace CleaniqueCoders\Blueprint\Macro\Tests;
 
-use CLNQCDRS\Blueprint\Macro\Tests\TestCase;
+use CleaniqueCoders\Blueprint\Macro\Tests\TestCase;
 use Illuminate\Support\Facades\Schema;
 
 class HashslugTest extends TestCase
