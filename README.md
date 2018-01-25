@@ -1,11 +1,19 @@
 ## About Your Package
 
-Tell people about your package
+[![Build Status](https://travis-ci.org/cleaniquecoders/blueprint-macro.svg?branch=master)](https://travis-ci.org/cleaniquecoders/blueprint-macro) [![Latest Stable Version](https://poser.pugx.org/cleaniquecoders/blueprint-macro/version)](https://packagist.org/packages/cleaniquecoders/blueprint-macro) [![Total Downloads](https://poser.pugx.org/cleaniquecoders/blueprint-macro/downloads)](https://packagist.org/packages/cleaniquecoders/blueprint-macro) [![License](https://poser.pugx.org/cleaniquecoders/blueprint-macro/license)](https://packagist.org/packages/cleaniquecoders/blueprint-macro)
 
 ## Installation
 
+1. In order to install Blueprint Macro in your Laravel project:
+
 ```
-$ composer require cleanique-coders/blueprint-macro --dev
+$ composer require cleaniquecoders/blueprint-macro
+```
+
+2. Then in your `config/app.php` add the following to the `providers` key:
+
+```php
+\CleaniqueCoders\BlueprintMacro\BlueprintMacroServiceProvider::class,
 ```
 
 ## Usage
@@ -18,7 +26,7 @@ Available macros:
 $table->addForeign('user_id', 'users');
 ```
 
-> Please take note, this is for `unsignedInteger`. Contribution much appreciated to support all other type of data type.
+> Please take note, this is for `unsignedInteger`. Contribution much appreciated to support all other common data type use for foreign key.
 
 2. Add Nullable Foreign Key (FK) - There's situation when your FK need to nullable. So this macro is for your, similar usage as `addForeign` macro.
 
