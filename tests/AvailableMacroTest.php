@@ -29,9 +29,39 @@ class AvailableMacroTest extends TestCase
     }
 
     /** @test */
+    public function it_has_uuid()
+    {
+        $this->assertTrue(Blueprint::hasMacro('uuid'));
+    }
+
+    /** @test */
     public function it_has_add_acceptance()
     {
         $this->assertTrue(Blueprint::hasMacro('addAcceptance'));
+    }
+
+    /** @test */
+    public function it_has_acted_status()
+    {
+        $this->assertTrue(Blueprint::hasMacro('actedStatus'));
+    }
+
+    /** @test */
+    public function it_has_acted_at()
+    {
+        $this->assertTrue(Blueprint::hasMacro('actedAt'));
+    }
+
+    /** @test */
+    public function it_has_acted_by()
+    {
+        $this->assertTrue(Blueprint::hasMacro('actedBy'));
+    }
+
+    /** @test */
+    public function it_has_remarks()
+    {
+        $this->assertTrue(Blueprint::hasMacro('remarks'));
     }
 
     /** @test */
@@ -44,6 +74,18 @@ class AvailableMacroTest extends TestCase
     public function it_has_slug()
     {
         $this->assertTrue(Blueprint::hasMacro('slug'));
+    }
+
+    /** @test */
+    public function it_has_label()
+    {
+        $this->assertTrue(Blueprint::hasMacro('label'));
+    }
+
+    /** @test */
+    public function it_has_name()
+    {
+        $this->assertTrue(Blueprint::hasMacro('name'));
     }
 
     /** @test */
@@ -74,6 +116,12 @@ class AvailableMacroTest extends TestCase
     public function it_has_small_amount()
     {
         $this->assertTrue(Blueprint::hasMacro('smallAmount'));
+    }
+
+    /** @test */
+    public function it_has_reference()
+    {
+        $this->assertTrue(Blueprint::hasMacro('reference'));
     }
 
     /** @test */
