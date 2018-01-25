@@ -1,6 +1,6 @@
 <?php
 
-namespace CLNQCDRS\Blueprint\Macro\Tests;
+namespace CleaniqueCoders\Blueprint\Macro\Tests;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -19,8 +19,8 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app)
     {
         return [
-            \CLNQCDRS\Blueprint\Macro\BlueprintMacroServiceProvider::class,
-            \CLNQCDRS\Blueprint\Macro\Tests\Stubs\ServiceProvider::class,
+            \CleaniqueCoders\Blueprint\Macro\BlueprintMacroServiceProvider::class,
+            \CleaniqueCoders\Blueprint\Macro\Tests\Stubs\ServiceProvider::class,
         ];
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace CLNQCDRS\Blueprint\Macro;
+namespace CleaniqueCoders\Blueprint\Macro;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +13,7 @@ class BlueprintMacroServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \CLNQCDRS\Blueprint\Macro\Database\Schema\Blueprint::registerMacros();
+        \CleaniqueCoders\Blueprint\Macro\Database\Schema\Blueprint::registerMacros();
     }
 
     /**

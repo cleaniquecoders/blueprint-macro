@@ -1,6 +1,6 @@
 <?php
 
-namespace CLNQCDRS\Blueprint\Macro\Tests\Stubs;
+namespace CleaniqueCoders\Blueprint\Macro\Tests\Stubs;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
