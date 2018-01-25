@@ -16,6 +16,11 @@ class TestCase extends \Orchestra\Testbench\TestCase
         ]);
     }
 
+    /**
+     * Get Package Providers
+     * @param  app $app App
+     * @return array  List of service providers
+     */
     protected function getPackageProviders($app)
     {
         return [
