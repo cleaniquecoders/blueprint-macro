@@ -32,6 +32,13 @@ class Blueprint implements MacroContract
                 ->on($table);
         });
 
+        DefaultBlueprint::macro('belongsTo', function ($key, $table, $references = 'id') {
+            $this->addForeign($key);
+            return $this->foreign($key)
+                ->references($references)
+                ->on($table);
+        });
+
         DefaultBlueprint::macro('uuid', function ($length = 64) {
             return $this->string('uuid', $length);
         });

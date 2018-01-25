@@ -17,6 +17,12 @@ class AvailableMacroTest extends TestCase
     }
 
     /** @test */
+    public function it_has_belongs_to()
+    {
+        $this->assertTrue(Blueprint::hasMacro('belongsTo'));
+    }
+
+    /** @test */
     public function it_has_add_nullable_foreign()
     {
         $this->assertTrue(Blueprint::hasMacro('addNullableForeign'));
