@@ -1,5 +1,5 @@
 {
-    "name": "clnqcdrs/blueprint-macro",
+    "name": "cleanique-coders/blueprint-macro",
     "description": "Laravel Blueprint Macro",
     "license": "MIT",
     "authors": [
@@ -10,12 +10,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "CLNQCDRS\\Blueprint\\Macro\\": "src/"
+            "CleaniqueCoders\\Blueprint\\Macro\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "CLNQCDRS\\Blueprint\\Macro\\Tests\\": "tests/"
+            "CleaniqueCoders\\Blueprint\\Macro\\Tests\\": "tests/"
         }
     },
     "require": {
