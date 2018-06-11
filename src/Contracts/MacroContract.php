@@ -3,7 +3,7 @@
 namespace CleaniqueCoders\Blueprint\Macro\Contracts;
 
 /**
- * MacroContract
+ * MacroContract.
  */
 interface MacroContract
 {

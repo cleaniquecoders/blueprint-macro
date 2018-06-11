@@ -2,7 +2,6 @@
 
 namespace CleaniqueCoders\Blueprint\Macro\Tests;
 
-use CleaniqueCoders\Blueprint\Macro\Tests\TestCase;
 use Illuminate\Support\Facades\Schema;
 
 class ForeignTest extends TestCase

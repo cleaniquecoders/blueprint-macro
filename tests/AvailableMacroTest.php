@@ -2,12 +2,8 @@
 
 namespace CleaniqueCoders\Blueprint\Macro\Tests;
 
-use CleaniqueCoders\Blueprint\Macro\Tests\TestCase;
 use Illuminate\Database\Schema\Blueprint;
 
-/**
- *
- */
 class AvailableMacroTest extends TestCase
 {
     /** @test */

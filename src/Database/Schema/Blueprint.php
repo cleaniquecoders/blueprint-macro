@@ -6,12 +6,12 @@ use CleaniqueCoders\Blueprint\Macro\Contracts\MacroContract;
 use Illuminate\Database\Schema\Blueprint as DefaultBlueprint;
 
 /**
- * Extended Blueprint by using Macro
+ * Extended Blueprint by using Macro.
  */
 class Blueprint implements MacroContract
 {
     /**
-     * Register Macros
+     * Register Macros.
      *
      * @void
      */
@@ -34,6 +34,7 @@ class Blueprint implements MacroContract
 
         DefaultBlueprint::macro('belongsTo', function ($key, $table, $references = 'id') {
             $this->addForeign($key);
+
             return $this->foreign($key)
                 ->references($references)
                 ->on($table);
@@ -48,6 +49,7 @@ class Blueprint implements MacroContract
             $this->actedAt($value . '_at');
             $this->actedBy($value . '_by');
             $this->remarks($value . '_remarks');
+
             return $this;
         });
 
@@ -90,11 +92,13 @@ class Blueprint implements MacroContract
         DefaultBlueprint::macro('expired', function () {
             $this->boolean('is_expired')->default(false);
             $this->datetime('expired_at')->nullable();
+
             return $this;
         });
 
         DefaultBlueprint::macro('user', function () {
             $this->belongsTo('user_id', 'users');
+
             return $this;
         });
 
