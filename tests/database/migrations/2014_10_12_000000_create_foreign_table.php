@@ -12,10 +12,9 @@ class CreateForeignTable extends Migration
     public function up()
     {
         Schema::create('foreign', function (Blueprint $table) {
-            $table->addForeign('user_id', 'users');
-            $table->addNullableForeign('supervisor_id', 'users');
-            $table->referenceOn('user_id', 'users');
-            $table->referenceOn('supervisor_id', 'users');
+            $table->addForeign('users');
+            $table->addForeign('users', ['fk' => 'customer_id']);
+            $table->addForeign('bigs', ['bigInteger' => true]);
         });
     }
 
