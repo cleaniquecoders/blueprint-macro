@@ -12,7 +12,7 @@ class AvailableMacroTest extends TestCase
         $macros = [
             'addForeign', 'addNullableForeign',
             'referenceOn', 'belongsTo', 'nullableBelongsTo',
-            'uuid', 'addAcceptance', 'actedStatus', 
+            'uuid', 'addAcceptance', 'actedStatus',
             'actedAt', 'actedBy', 'remarks', 'hashslug',
             'slug', 'label', 'name', 'description', 'expired',
             'user', 'amount', 'smallAmount', 'reference', 'standardTime',

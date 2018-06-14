@@ -3,7 +3,6 @@
 namespace CleaniqueCoders\Blueprint\Macro\Tests;
 
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
 /**
  * @todo test default & custom reference
