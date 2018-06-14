@@ -18,35 +18,37 @@ class Blueprint implements MacroContract
      */
     public static function registerMacros()
     {
-        /**
-         * Foreign Key 
+        /*
+         * Foreign Key
          */
         DefaultBlueprint::macro('addForeign', function ($table, $options = []) {
-            $fk = (isset($options['fk']) && !empty($options['fk'])) ? 
+            $fk = (isset($options['fk']) && ! empty($options['fk'])) ?
                 $options['fk'] :
                 Str::lower(Str::singular($table)) . '_id';
 
-            $reference = (isset($options['reference']) && !empty($options['reference'])) ? 
+            $reference = (isset($options['reference']) && ! empty($options['reference'])) ?
                 $options['reference'] :
                 'id';
 
-            if (isset($options['bigInteger']) && $options['bigInteger'] == true) {
-                $this->unsignedBigInteger($fk)->index();
+            if (isset($options['bigInteger']) && true == $options['bigInteger']) {
+                $schema = $this->unsignedBigInteger($fk)->index();
             } else {
-                $this->unsignedInteger($fk)->index();
+                $schema = $this->unsignedInteger($fk)->index();
             }
 
-            if (isset($options['nullable']) && $options['nullable'] == true) {
-                $this->nullable();
+            if (isset($options['nullable']) && true == $options['nullable']) {
+                $schema->nullable();
             }
 
-            $this->referenceOn($fk, $table, $reference);
+            if (! isset($options['no_reference'])) {
+                $schema->referenceOn($fk, $table, $reference);
+            }
 
-            return $this;
+            return $schema;
         });
 
-        DefaultBlueprint::macro('addNullableForeign', function ($table) {
-            return $this->addForeign($table, ['nullable' => true]);
+        DefaultBlueprint::macro('addNullableForeign', function ($table, $fk) {
+            return $this->addForeign($table, ['nullable' => true, 'fk' => $fk]);
         });
 
         DefaultBlueprint::macro('referenceOn', function ($key, $table, $reference = 'id') {
@@ -63,7 +65,7 @@ class Blueprint implements MacroContract
             return $this->addNullableForeign($table, ['nullable' => true, 'fk' => $key, 'reference' => $reference]);
         });
 
-        /**
+        /*
          * Common Setup
          */
         DefaultBlueprint::macro('user', function ($nullable = false) {
@@ -75,7 +77,7 @@ class Blueprint implements MacroContract
             $this->timestamps();
         });
 
-        /**
+        /*
          * Identifier Replacement
          */
         DefaultBlueprint::macro('uuid', function ($length = 64) {
@@ -97,7 +99,7 @@ class Blueprint implements MacroContract
                 ->index();
         });
 
-        /**
+        /*
          * Short String
          */
         DefaultBlueprint::macro('label', function ($value = 'label', $length = 255) {
@@ -122,7 +124,7 @@ class Blueprint implements MacroContract
                 ->index();
         });
 
-        /**
+        /*
          * Long String
          */
         DefaultBlueprint::macro('remarks', function ($value = 'remarks') {
@@ -133,7 +135,7 @@ class Blueprint implements MacroContract
             return $this->text($label)->nullable();
         });
 
-        /**
+        /*
          * Acceptance
          */
         DefaultBlueprint::macro('addAcceptance', function ($value) {
@@ -154,14 +156,14 @@ class Blueprint implements MacroContract
         });
 
         DefaultBlueprint::macro('at', function ($key = 'activated', $suffix = '_at') {
-            return $this->datetime($value . $suffix)->nullable();
+            return $this->datetime($key . $suffix)->nullable();
         });
 
         DefaultBlueprint::macro('by', function ($table, $key = null, $nullable = false, $bigInteger = false, $suffix = '_by') {
             return $this->addForeign($table, [
-                'fk' => (!is_null($key) ? $key . $suffix : null), 
-                'nullable' => $nullable, 
-                'bigInteger' => $bigInteger
+                'fk'         => (! is_null($key) ? $key . $suffix : null),
+                'nullable'   => $nullable,
+                'bigInteger' => $bigInteger,
             ]);
         });
 
@@ -180,7 +182,7 @@ class Blueprint implements MacroContract
             return $this->unsignedInteger($value)->nullable();
         });
 
-        /**
+        /*
          * Money
          */
         DefaultBlueprint::macro('amount', function ($label = 'amount') {
@@ -195,7 +197,7 @@ class Blueprint implements MacroContract
                 ->default(0);
         });
 
-        /**
+        /*
          * Misc.
          */
         DefaultBlueprint::macro('ordering', function ($key = 'ordering', $length = 10) {
