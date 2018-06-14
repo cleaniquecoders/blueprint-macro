@@ -4,6 +4,7 @@ namespace CleaniqueCoders\Blueprint\Macro\Database\Schema;
 
 use CleaniqueCoders\Blueprint\Macro\Contracts\MacroContract;
 use Illuminate\Database\Schema\Blueprint as DefaultBlueprint;
+use Illuminate\Support\Str;
 
 /**
  * Extended Blueprint by using Macro.
@@ -17,64 +18,68 @@ class Blueprint implements MacroContract
      */
     public static function registerMacros()
     {
-        DefaultBlueprint::macro('addForeign', function ($key) {
-            return $this->unsignedInteger($key)
-                ->index();
-        });
+        /**
+         * Foreign Key 
+         */
+        DefaultBlueprint::macro('addForeign', function ($table, $options = []) {
+            $fk = (isset($options['fk']) && !empty($options['fk'])) ? 
+                $options['fk'] :
+                Str::lower(Str::singular($table)) . '_id';
 
-        DefaultBlueprint::macro('addNullableForeign', function ($key) {
-            return $this->addForeign($key)->nullable();
-        });
+            $reference = (isset($options['reference']) && !empty($options['reference'])) ? 
+                $options['reference'] :
+                'id';
 
-        DefaultBlueprint::macro('referenceOn', function ($key, $table, $references = 'id') {
-            return $this->foreign($key)
-                ->references($references)
-                ->on($table);
-        });
+            if (isset($options['bigInteger']) && $options['bigInteger'] == true) {
+                $this->unsignedBigInteger($fk)->index();
+            } else {
+                $this->unsignedInteger($fk)->index();
+            }
 
-        DefaultBlueprint::macro('belongsTo', function ($key, $table, $references = 'id') {
-            $this->addForeign($key);
+            if (isset($options['nullable']) && $options['nullable'] == true) {
+                $this->nullable();
+            }
 
-            return $this->foreign($key)
-                ->references($references)
-                ->on($table);
-        });
-
-        DefaultBlueprint::macro('nullableBelongsTo', function ($key, $table, $references = 'id') {
-            $this->addNullableForeign($key);
-
-            return $this->foreign($key)
-                ->references($references)
-                ->on($table);
-        });
-
-        DefaultBlueprint::macro('uuid', function ($length = 64) {
-            return $this->string('uuid', $length);
-        });
-
-        DefaultBlueprint::macro('addAcceptance', function ($value) {
-            $this->actedStatus('is_' . $value);
-            $this->actedAt($value . '_at');
-            $this->actedBy($value . '_by');
-            $this->remarks($value . '_remarks');
+            $this->referenceOn($fk, $table, $reference);
 
             return $this;
         });
 
-        DefaultBlueprint::macro('actedStatus', function ($value = 'is_acted') {
-            return $this->boolean($value)->default(false);
+        DefaultBlueprint::macro('addNullableForeign', function ($table) {
+            return $this->addForeign($table, ['nullable' => true]);
         });
 
-        DefaultBlueprint::macro('actedAt', function ($value = 'acted_at') {
-            return $this->datetime($value)->nullable();
+        DefaultBlueprint::macro('referenceOn', function ($key, $table, $reference = 'id') {
+            return $this->foreign($key)
+                ->references($reference)
+                ->on($table);
         });
 
-        DefaultBlueprint::macro('actedBy', function ($value = 'acted_by') {
-            return $this->unsignedInteger($value)->nullable();
+        DefaultBlueprint::macro('belongsTo', function ($key, $table, $reference = 'id') {
+            return $this->addForeign($table, ['fk' => $key, 'reference' => $reference]);
         });
 
-        DefaultBlueprint::macro('remarks', function ($value = 'remarks') {
-            return $this->text($value)->nullable();
+        DefaultBlueprint::macro('nullableBelongsTo', function ($key, $table, $reference = 'id') {
+            return $this->addNullableForeign($table, ['nullable' => true, 'fk' => $key, 'reference' => $reference]);
+        });
+
+        /**
+         * Common Setup
+         */
+        DefaultBlueprint::macro('user', function ($nullable = false) {
+            return $this->addForeign('users', ['nullable' => $nullable]);
+        });
+
+        DefaultBlueprint::macro('standardTime', function () {
+            $this->softDeletes();
+            $this->timestamps();
+        });
+
+        /**
+         * Identifier Replacement
+         */
+        DefaultBlueprint::macro('uuid', function ($length = 64) {
+            return $this->string('uuid', $length);
         });
 
         DefaultBlueprint::macro('hashslug', function ($length = 64) {
@@ -92,35 +97,92 @@ class Blueprint implements MacroContract
                 ->index();
         });
 
-        DefaultBlueprint::macro('label', function ($label = 'label') {
-            return $this->string($label)->nullable();
+        /**
+         * Short String
+         */
+        DefaultBlueprint::macro('label', function ($value = 'label', $length = 255) {
+            return $this->string($value, $length)->nullable();
         });
 
-        DefaultBlueprint::macro('name', function ($value = 'name') {
-            return $this->string($value)->nullable();
+        DefaultBlueprint::macro('name', function ($value = 'name', $length = 255) {
+            return $this->string($value, $length)->nullable();
+        });
+
+        DefaultBlueprint::macro('code', function ($key = 'code', $length = 20) {
+            return $this->string($key, $length)
+                ->nullable()
+                ->unique()
+                ->index();
+        });
+
+        DefaultBlueprint::macro('reference', function ($label = 'reference', $length = 64) {
+            return $this->string('reference', $length)
+                ->nullable()
+                ->unique()
+                ->index();
+        });
+
+        /**
+         * Long String
+         */
+        DefaultBlueprint::macro('remarks', function ($value = 'remarks') {
+            return $this->text($value)->nullable();
         });
 
         DefaultBlueprint::macro('description', function ($label = 'description') {
             return $this->text($label)->nullable();
         });
 
-        DefaultBlueprint::macro('expired', function () {
-            $this->boolean('is_expired')->default(false);
-            $this->datetime('expired_at')->nullable();
+        /**
+         * Acceptance
+         */
+        DefaultBlueprint::macro('addAcceptance', function ($value) {
+            $this->is($value);
+            $this->at($value . '_at');
+            $this->by($value . '_by');
+            $this->remarks($value . '_remarks');
 
             return $this;
         });
 
-        DefaultBlueprint::macro('user', function ($nullable = false) {
-            if($nullable) {
-                $this->nullableBelongsTo('user_id', 'users');
-            } else {
-                $this->belongsTo('user_id', 'users');
-            }
-            
-            return $this;
+        DefaultBlueprint::macro('status', function ($key = 'status', $default = true) {
+            return $this->boolean($key)->default($default);
         });
 
+        DefaultBlueprint::macro('is', function ($key = 'activated', $default = true, $prefix = 'is_') {
+            return $this->status($prefix . $key, $default);
+        });
+
+        DefaultBlueprint::macro('at', function ($key = 'activated', $suffix = '_at') {
+            return $this->datetime($value . $suffix)->nullable();
+        });
+
+        DefaultBlueprint::macro('by', function ($table, $key = null, $nullable = false, $bigInteger = false, $suffix = '_by') {
+            return $this->addForeign($table, [
+                'fk' => (!is_null($key) ? $key . $suffix : null), 
+                'nullable' => $nullable, 
+                'bigInteger' => $bigInteger
+            ]);
+        });
+
+        // will be deprecated
+        DefaultBlueprint::macro('actedStatus', function ($value = 'is_acted') {
+            return $this->boolean($value)->default(false);
+        });
+
+        // will be deprecated
+        DefaultBlueprint::macro('actedAt', function ($value = 'acted_at') {
+            return $this->datetime($value)->nullable();
+        });
+
+        // will be deprecated
+        DefaultBlueprint::macro('actedBy', function ($value = 'acted_by') {
+            return $this->unsignedInteger($value)->nullable();
+        });
+
+        /**
+         * Money
+         */
         DefaultBlueprint::macro('amount', function ($label = 'amount') {
             return $this->bigInteger($label)
                 ->nullable()
@@ -133,33 +195,9 @@ class Blueprint implements MacroContract
                 ->default(0);
         });
 
-        DefaultBlueprint::macro('reference', function ($label = 'reference', $length = 64) {
-            return $this->string('reference', $length)
-                ->nullable()
-                ->unique()
-                ->index();
-        });
-
-        DefaultBlueprint::macro('standardTime', function () {
-            $this->softDeletes();
-            $this->timestamps();
-        });
-
-        DefaultBlueprint::macro('code', function ($key = 'code', $length = 20) {
-            return $this->string($key, $length)
-                ->nullable()
-                ->unique()
-                ->index();
-        });
-
-        DefaultBlueprint::macro('status', function ($key = 'status', $default = true) {
-            return $this->boolean($key)->default($default);
-        });
-
-        DefaultBlueprint::macro('is', function ($key = 'active', $default = true) {
-            return $this->status('is_' . $key, $default);
-        });
-
+        /**
+         * Misc.
+         */
         DefaultBlueprint::macro('ordering', function ($key = 'ordering', $length = 10) {
             return $this->string($key, $length)
                 ->nullable();
@@ -167,6 +205,13 @@ class Blueprint implements MacroContract
 
         DefaultBlueprint::macro('percent', function ($key = 'percent') {
             return $this->decimal($key, 5, 2)->default(0);
+        });
+
+        DefaultBlueprint::macro('expired', function () {
+            $this->boolean('is_expired')->default(false);
+            $this->datetime('expired_at')->nullable();
+
+            return $this;
         });
     }
 }
