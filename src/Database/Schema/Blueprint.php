@@ -58,16 +58,18 @@ class Blueprint implements MacroContract
         });
 
         DefaultBlueprint::macro('belongsTo', function ($table, $key = null, $reference = 'id') {
-            if(is_null($key)) {
+            if (is_null($key)) {
                 $key = Str::lower(Str::singular($table)) . '_id';
             }
+
             return $this->addForeign($table, ['fk' => $key, 'reference' => $reference]);
         });
 
         DefaultBlueprint::macro('nullableBelongsTo', function ($table, $key = null, $reference = 'id') {
-            if(is_null($key)) {
+            if (is_null($key)) {
                 $key = Str::lower(Str::singular($table)) . '_id';
             }
+
             return $this->addNullableForeign($table, $key);
         });
 
