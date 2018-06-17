@@ -47,8 +47,8 @@ class Blueprint implements MacroContract
             return $schema;
         });
 
-        DefaultBlueprint::macro('addNullableForeign', function ($table, $fk) {
-            return $this->addForeign($table, ['nullable' => true, 'fk' => $fk]);
+        DefaultBlueprint::macro('addNullableForeign', function ($table, $fk, $bigInteger = false) {
+            return $this->addForeign($table, ['nullable' => true, 'fk' => $fk, 'bigInteger' => $bigInteger]);
         });
 
         DefaultBlueprint::macro('referenceOn', function ($key, $table, $reference = 'id') {
@@ -57,20 +57,20 @@ class Blueprint implements MacroContract
                 ->on($table);
         });
 
-        DefaultBlueprint::macro('belongsTo', function ($table, $key = null, $reference = 'id') {
+        DefaultBlueprint::macro('belongsTo', function ($table, $key = null, $bigInteger = false, $reference = 'id') {
             if (is_null($key)) {
                 $key = Str::lower(Str::singular($table)) . '_id';
             }
 
-            return $this->addForeign($table, ['fk' => $key, 'reference' => $reference]);
+            return $this->addForeign($table, ['fk' => $key, 'reference' => $reference, 'bigInteger' => $bigInteger]);
         });
 
-        DefaultBlueprint::macro('nullableBelongsTo', function ($table, $key = null, $reference = 'id') {
+        DefaultBlueprint::macro('nullableBelongsTo', function ($table, $key = null, $bigInteger = false, $reference = 'id') {
             if (is_null($key)) {
                 $key = Str::lower(Str::singular($table)) . '_id';
             }
 
-            return $this->addNullableForeign($table, $key);
+            return $this->addNullableForeign($table, $key, $bigInteger);
         });
 
         /*
