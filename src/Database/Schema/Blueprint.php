@@ -146,10 +146,10 @@ class Blueprint implements MacroContract
         /*
          * Acceptance
          */
-        DefaultBlueprint::macro('addAcceptance', function ($value) {
+        DefaultBlueprint::macro('addAcceptance', function ($value, $table_by = 'users') {
             $this->is($value);
             $this->at($value . '_at');
-            $this->by($value . '_by');
+            $this->by($table_by, $value);
             $this->remarks($value . '_remarks');
 
             return $this;
@@ -167,7 +167,7 @@ class Blueprint implements MacroContract
             return $this->datetime($key . $suffix)->nullable();
         });
 
-        DefaultBlueprint::macro('by', function ($table, $key = null, $nullable = false, $bigInteger = false, $suffix = '_by') {
+        DefaultBlueprint::macro('by', function ($table, $key = null, $nullable = true, $bigInteger = false, $suffix = '_by') {
             return $this->addForeign($table, [
                 'fk'         => (! is_null($key) ? $key . $suffix : null),
                 'nullable'   => $nullable,
