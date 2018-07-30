@@ -41,7 +41,7 @@ class Blueprint implements MacroContract
             }
 
             if (! isset($options['no_reference'])) {
-                $schema->referenceOn($fk, $table, $reference);
+                $this->referenceOn($fk, $table, $reference);
             }
 
             return $schema;
