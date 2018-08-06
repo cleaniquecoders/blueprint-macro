@@ -148,7 +148,7 @@ class Blueprint implements MacroContract
          */
         DefaultBlueprint::macro('addAcceptance', function ($value, $table_by = 'users') {
             $this->is($value);
-            $this->at($value . '_at');
+            $this->at($value);
             $this->by($table_by, $value);
             $this->remarks($value . '_remarks');
 
