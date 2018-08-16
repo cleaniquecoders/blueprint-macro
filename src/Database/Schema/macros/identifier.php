@@ -1,16 +1,16 @@
 <?php
 
 
-use Illuminate\Database\Schema\Blueprint as DefaultBlueprint;
+use Illuminate\Database\Schema\Blueprint;
 
 /*
  * Identifier Replacement
  */
-DefaultBlueprint::macro('uuid', function($length = 64) {
+Blueprint::macro('uuid', function($length = 64) {
     return $this->string('uuid', $length)->comment('UUID');
 });
 
-DefaultBlueprint::macro('hashslug', function($length = 64) {
+Blueprint::macro('hashslug', function($length = 64) {
     return $this->string('hashslug')
         ->length($length)
         ->nullable()
@@ -19,7 +19,7 @@ DefaultBlueprint::macro('hashslug', function($length = 64) {
         ->comment('Hashed Slug');
 });
 
-DefaultBlueprint::macro('slug', function() {
+Blueprint::macro('slug', function() {
     return $this->string('slug')
         ->nullable()
         ->unique()

@@ -11,7 +11,10 @@ class BlueprintMacroServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \CleaniqueCoders\Blueprint\Macro\Database\Schema\Blueprint::registerMacros();
+        collect(glob(__DIR__ . '/Database/Schema/macros/*.php'))
+            ->each(function($path) {
+                require $path;
+            });
     }
 
     /**

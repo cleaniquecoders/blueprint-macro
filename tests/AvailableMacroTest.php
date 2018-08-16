@@ -10,13 +10,14 @@ class AvailableMacroTest extends TestCase
     public function it_has_blueprint_macros()
     {
         $macros = [
-            'addForeign', 'addNullableForeign',
-            'referenceOn', 'belongsTo', 'nullableBelongsTo',
-            'uuid', 'addAcceptance', 'actedStatus',
-            'actedAt', 'actedBy', 'remarks', 'hashslug',
-            'slug', 'label', 'name', 'description', 'expired',
-            'user', 'amount', 'smallAmount', 'reference', 'standardTime',
-            'code', 'status', 'is', 'ordering', 'percent',
+            'addAcceptance', 'status', 'is', 'at', 'by',
+            'user', 'standardTime',
+            'actedStatus', 'actedAt', 'actedBy',
+            'addForeign', 'addNullableForeign', 'referenceOn', 'belongsTo', 'nullableBelongsTo',
+            'uuid', 'hashslug', 'slug',
+            'ordering', 'percent', 'expired',
+            'amount', 'smallAmount',
+            'label', 'name', 'code', 'reference', 'remarks', 'description',
         ];
 
         foreach ($macros as $macro) {

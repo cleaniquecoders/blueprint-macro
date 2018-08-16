@@ -1,19 +1,19 @@
 <?php
 
 
-use Illuminate\Database\Schema\Blueprint as DefaultBlueprint;
+use Illuminate\Database\Schema\Blueprint;
 
 /*
  * Money
  */
-DefaultBlueprint::macro('amount', function($label = 'amount') {
+Blueprint::macro('amount', function($label = 'amount') {
     return $this->bigInteger($label)
         ->nullable()
         ->default(0)
         ->comment('Big amount of money');
 });
 
-DefaultBlueprint::macro('smallAmount', function($label = 'amount') {
+Blueprint::macro('smallAmount', function($label = 'amount') {
     return $this->integer($label)
         ->nullable()
         ->default(0)
