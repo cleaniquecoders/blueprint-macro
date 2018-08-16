@@ -7,7 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 class AvailableMacroTest extends TestCase
 {
     /** @test */
-    public function it_has_extended_blueprint()
+    public function it_has_blueprint_macros()
     {
         $macros = [
             'addForeign', 'addNullableForeign',
