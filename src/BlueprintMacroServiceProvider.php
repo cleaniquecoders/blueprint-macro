@@ -15,6 +15,11 @@ class BlueprintMacroServiceProvider extends ServiceProvider
             ->each(function($path) {
                 require $path;
             });
+
+        collect(glob(__DIR__ . '/Models/macros/*.php'))
+            ->each(function($path) {
+                require $path;
+            });
     }
 
     /**
