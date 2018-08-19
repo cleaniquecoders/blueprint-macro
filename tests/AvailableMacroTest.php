@@ -2,6 +2,7 @@
 
 namespace CleaniqueCoders\Blueprint\Macro\Tests;
 
+use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Schema\Blueprint;
 
 class AvailableMacroTest extends TestCase
@@ -22,6 +23,21 @@ class AvailableMacroTest extends TestCase
 
         foreach ($macros as $macro) {
             $this->assertTrue(Blueprint::hasMacro($macro));
+        }
+    }
+
+    /** @test */
+    public function it_has_eloquent_builder_macros()
+    {
+        $macros = [
+            'status', 'is', 'at', 'by',
+            'user',
+            'uuid', 'hashslug', 'slug', 'findByUuid', 'findByHashSlug', 'hashslugOrId', 'findByHashSlugOrId', 'findBySlug',
+            'label', 'name', 'code', 'reference',
+        ];
+
+        foreach ($macros as $macro) {
+            $this->assertTrue(Builder::hasMacro($macro));
         }
     }
 }
