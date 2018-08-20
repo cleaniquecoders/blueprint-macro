@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 
 Builder::macro('uuid', function($uuid) {
     return $this->where('uuid', $uuid);

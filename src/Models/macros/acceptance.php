@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 
 Builder::macro('status', function($status, $key = 'status') {
     return $this->where($key, $status);
