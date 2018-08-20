@@ -16,6 +16,11 @@ class BlueprintMacroServiceProvider extends ServiceProvider
                 require $path;
             });
 
+        /* A little hack to have Builder::hasMacro */
+        \Illuminate\Database\Eloquent\Builder::macro('hasMacro', function($name) {
+            return isset(static::$macros[$name]);
+        });
+
         collect(glob(__DIR__ . '/Models/macros/*.php'))
             ->each(function($path) {
                 require $path;

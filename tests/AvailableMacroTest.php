@@ -2,7 +2,7 @@
 
 namespace CleaniqueCoders\Blueprint\Macro\Tests;
 
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Schema\Blueprint;
 
 class AvailableMacroTest extends TestCase
