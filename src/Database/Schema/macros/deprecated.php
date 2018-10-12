@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Database\Schema\Blueprint;
 
 // will be deprecated
