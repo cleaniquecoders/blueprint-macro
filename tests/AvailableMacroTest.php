@@ -17,7 +17,7 @@ class AvailableMacroTest extends TestCase
             'addForeign', 'addNullableForeign', 'referenceOn', 'belongsTo', 'nullableBelongsTo',
             'uuid', 'hashslug', 'slug',
             'ordering', 'percent', 'expired',
-            'amount', 'smallAmount',
+            'money', 'amount', 'smallAmount',
             'label', 'name', 'code', 'reference', 'remarks', 'description',
         ];
 
