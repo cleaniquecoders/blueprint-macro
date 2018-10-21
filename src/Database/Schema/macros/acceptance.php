@@ -5,8 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 /*
  * Acceptance
  */
-Blueprint::macro('addAcceptance', function($value, $table_by = 'users') {
-    $this->is($value);
+Blueprint::macro('addAcceptance', function($value, $table_by = 'users', $is_default = true) {
+    $this->is($value, $is_default);
     $this->at($value);
     $this->by($table_by, $value);
     $this->remarks($value . '_remarks');
