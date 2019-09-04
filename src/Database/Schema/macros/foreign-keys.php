@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Str;
 
 /*
  * Foreign Key
  */
 Blueprint::macro('addForeign', function($table, $options = []) {
     $fk = (isset($options['fk']) && ! empty($options['fk'])) ?
-        $options['fk'] : strtolower(str_singular($table)) . '_id';
+        $options['fk'] : strtolower(Str::singular($table)) . '_id';
 
     $reference = (isset($options['reference']) && ! empty($options['reference'])) ?
         $options['reference'] : 'id';
@@ -41,7 +42,7 @@ Blueprint::macro('referenceOn', function($key, $table, $reference = 'id') {
 
 Blueprint::macro('belongsTo', function($table, $key = null, $bigInteger = false, $reference = 'id') {
     if (is_null($key)) {
-        $key = strtolower(str_singular($table)) . '_id';
+        $key = strtolower(Str::singular($table)) . '_id';
     }
 
     return $this->addForeign($table, ['fk' => $key, 'reference' => $reference, 'bigInteger' => $bigInteger])->comment('FK for ' . $table);
@@ -49,7 +50,7 @@ Blueprint::macro('belongsTo', function($table, $key = null, $bigInteger = false,
 
 Blueprint::macro('nullableBelongsTo', function($table, $key = null, $bigInteger = false, $reference = 'id') {
     if (is_null($key)) {
-        $key = strtolower(str_singular($table)) . '_id';
+        $key = strtolower(Str::singular($table)) . '_id';
     }
 
     return $this->addNullableForeign($table, $key, $bigInteger);
