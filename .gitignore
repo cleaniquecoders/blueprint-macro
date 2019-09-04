@@ -1,2 +1,7 @@
-.php_cs.cache
 vendor/
+
+# PHPUnit
+.phpunit.result.cache
+
+# PHP CS Fixer
+.php_cs.cache
