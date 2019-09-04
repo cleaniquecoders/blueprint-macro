@@ -8,7 +8,7 @@ class StringTest extends TestCase
 {
     use TableTrait;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->fetchTables();
