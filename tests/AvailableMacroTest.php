@@ -3,6 +3,7 @@
 namespace CleaniqueCoders\Blueprint\Macro\Tests;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Schema\Blueprint;
 
 class AvailableMacroTest extends TestCase
@@ -35,9 +36,9 @@ class AvailableMacroTest extends TestCase
             'uuid', 'hashslug', 'slug', 'findByUuid', 'findByHashSlug', 'hashslugOrId', 'findByHashSlugOrId', 'findBySlug',
             'label', 'name', 'code', 'reference',
         ];
-
+        
         foreach ($macros as $macro) {
-            $this->assertTrue(Builder::hasMacro($macro));
+            $this->assertTrue(Builder::hasGlobalMacro($macro));
         }
     }
 }
