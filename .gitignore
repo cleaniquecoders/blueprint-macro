@@ -8,3 +8,5 @@ vendor/
 
 # PHPStorm
 .idea/
+
+.php-cs-fixer.cache
