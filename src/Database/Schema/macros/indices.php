@@ -69,7 +69,7 @@ Blueprint::macro('dropIndexIfExists', function ($columns) {
     return $this;
 });
 
-if (!function_exists('compare_array')) {
+if (! function_exists('compare_array')) {
     /**
      * @param $arrayA
      * @param $arrayB

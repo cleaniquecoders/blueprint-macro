@@ -12,17 +12,17 @@ class BlueprintMacroServiceProvider extends ServiceProvider
     public function boot()
     {
         collect(glob(__DIR__ . '/Database/Schema/macros/*.php'))
-            ->each(function($path) {
+            ->each(function ($path) {
                 require $path;
             });
 
         /* A little hack to have Builder::hasMacro */
-        \Illuminate\Database\Eloquent\Builder::macro('hasMacro', function($name) {
+        \Illuminate\Database\Eloquent\Builder::macro('hasMacro', function ($name) {
             return isset(static::$macros[$name]);
         });
 
         collect(glob(__DIR__ . '/Models/macros/*.php'))
-            ->each(function($path) {
+            ->each(function ($path) {
                 require $path;
             });
     }

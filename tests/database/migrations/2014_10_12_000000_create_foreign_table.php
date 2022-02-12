@@ -11,7 +11,7 @@ class CreateForeignTable extends Migration
      */
     public function up()
     {
-        Schema::create('foreign', function(Blueprint $table) {
+        Schema::create('foreign', function (Blueprint $table) {
             $table->addForeign('users');
             $table->addForeign('users', ['fk' => 'customer_id']);
             $table->addForeign('bigs', ['bigInteger' => true]);

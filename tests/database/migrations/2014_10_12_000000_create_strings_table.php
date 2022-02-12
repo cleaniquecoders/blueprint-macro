@@ -11,7 +11,7 @@ class CreateStringsTable extends Migration
      */
     public function up()
     {
-        Schema::create('strings', function(Blueprint $table) {
+        Schema::create('strings', function (Blueprint $table) {
             $table->label();
             $table->name();
             $table->code();

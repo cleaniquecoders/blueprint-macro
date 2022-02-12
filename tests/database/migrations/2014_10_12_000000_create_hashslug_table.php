@@ -11,7 +11,7 @@ class CreateHashslugTable extends Migration
      */
     public function up()
     {
-        Schema::create('hashslug', function(Blueprint $table) {
+        Schema::create('hashslug', function (Blueprint $table) {
             $table->hashslug();
         });
     }

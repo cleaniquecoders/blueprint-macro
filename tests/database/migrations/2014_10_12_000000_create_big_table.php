@@ -11,7 +11,7 @@ class CreateBigTable extends Migration
      */
     public function up()
     {
-        Schema::create('bigs', function(Blueprint $table) {
+        Schema::create('bigs', function (Blueprint $table) {
             $table->unsignedBigInteger('id');
             $table->timestamps();
         });

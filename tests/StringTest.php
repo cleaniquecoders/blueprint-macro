@@ -48,43 +48,48 @@ class StringTest extends TestCase
         switch ($column) {
             case 'label':
                 $criteria = [
-                    'type'     => 'string',
-                    'length'   => 255,
+                    'type' => 'string',
+                    'length' => 255,
                     'nullable' => true,
-                    'comment'  => 'label',
+                    'comment' => 'label',
                 ];
+
                 break;
             case 'name':
                 $criteria = [
-                    'type'     => 'string',
-                    'length'   => 255,
+                    'type' => 'string',
+                    'length' => 255,
                     'nullable' => true,
-                    'comment'  => 'name',
+                    'comment' => 'name',
                 ];
+
                 break;
             case 'code':
                 $criteria = [
-                    'type'     => 'string',
-                    'length'   => 20,
+                    'type' => 'string',
+                    'length' => 20,
                     'nullable' => true,
-                    'comment'  => 'Code',
+                    'comment' => 'Code',
                 ];
+
                 break;
             case 'reference':
                 $criteria = [
-                    'type'     => 'string',
-                    'length'   => 64,
+                    'type' => 'string',
+                    'length' => 64,
                     'nullable' => true,
-                    'comment'  => 'Reference',
+                    'comment' => 'Reference',
                 ];
+
                 break;
             default:
                 $criteria = [
-                    'type'     => 'string',
-                    'length'   => 255,
+                    'type' => 'string',
+                    'length' => 255,
                     'nullable' => true,
-                    'comment'  => '',
+                    'comment' => '',
                 ];
+
                 break;
         }
 
