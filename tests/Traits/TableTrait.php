@@ -9,8 +9,11 @@ trait TableTrait
     use ColumnTrait;
 
     public $database_connection;
+
     public $connection;
+
     public $schema;
+
     public $tables;
 
     public function fetchTables()

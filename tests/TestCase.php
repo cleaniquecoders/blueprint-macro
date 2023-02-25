@@ -19,8 +19,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     /**
      * Get Package Providers.
      *
-     * @param app $app App
-     *
+     * @param  app  $app App
      * @return array List of service providers
      */
     protected function getPackageProviders($app)
@@ -34,7 +33,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     /**
      * Define environment setup.
      *
-     * @param \Illuminate\Foundation\Application $app
+     * @param  \Illuminate\Foundation\Application  $app
      */
     protected function getEnvironmentSetUp($app)
     {

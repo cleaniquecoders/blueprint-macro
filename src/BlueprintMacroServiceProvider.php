@@ -11,7 +11,7 @@ class BlueprintMacroServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        collect(glob(__DIR__ . '/Database/Schema/macros/*.php'))
+        collect(glob(__DIR__.'/Database/Schema/macros/*.php'))
             ->each(function ($path) {
                 require $path;
             });
@@ -21,7 +21,7 @@ class BlueprintMacroServiceProvider extends ServiceProvider
             return isset(static::$macros[$name]);
         });
 
-        collect(glob(__DIR__ . '/Models/macros/*.php'))
+        collect(glob(__DIR__.'/Models/macros/*.php'))
             ->each(function ($path) {
                 require $path;
             });

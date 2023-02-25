@@ -70,18 +70,13 @@ Blueprint::macro('dropIndexIfExists', function ($columns) {
 });
 
 if (! function_exists('compare_array')) {
-    /**
-     * @param $arrayA
-     * @param $arrayB
-     * @return bool
-     */
+
     function compare_array($arrayA, $arrayB): bool
     {
-        return (
+        return
             is_array($arrayA)
             && is_array($arrayB)
             && count($arrayA) == count($arrayB)
-            && array_diff($arrayA, $arrayB) === array_diff($arrayB, $arrayA)
-        );
+            && array_diff($arrayA, $arrayB) === array_diff($arrayB, $arrayA);
     }
 }

@@ -6,6 +6,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     public function boot()
     {
-        $this->loadMigrationsFrom(realpath(__DIR__ . '/../database/migrations'));
+        $this->loadMigrationsFrom(realpath(__DIR__.'/../database/migrations'));
     }
 }
