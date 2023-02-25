@@ -70,7 +70,6 @@ Blueprint::macro('dropIndexIfExists', function ($columns) {
 });
 
 if (! function_exists('compare_array')) {
-
     function compare_array($arrayA, $arrayB): bool
     {
         return
