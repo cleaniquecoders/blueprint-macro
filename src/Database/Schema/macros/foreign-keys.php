@@ -13,13 +13,13 @@ Blueprint::macro('addForeign', function ($table, $options = []) {
     $reference = (isset($options['reference']) && ! empty($options['reference'])) ?
         $options['reference'] : 'id';
 
-    if (isset($options['bigInteger']) && true == $options['bigInteger']) {
+    if (isset($options['bigInteger']) && $options['bigInteger'] == true) {
         $schema = $this->unsignedBigInteger($fk)->index();
     } else {
         $schema = $this->unsignedInteger($fk)->index();
     }
 
-    if (isset($options['nullable']) && true == $options['nullable']) {
+    if (isset($options['nullable']) && $options['nullable'] == true) {
         $schema->nullable();
     }
 

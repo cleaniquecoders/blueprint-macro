@@ -1,47 +1,47 @@
 {
-  "name": "cleaniquecoders/blueprint-macro",
-  "description": "Laravel Blueprint Macro",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Nasrul Hazim",
-      "email": "nasrulhazim.m@gmail.com"
-    }
-  ],
-  "autoload": {
-    "psr-4": {
-      "CleaniqueCoders\\Blueprint\\Macro\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "CleaniqueCoders\\Blueprint\\Macro\\Tests\\": "tests/"
-    }
-  },
-  "require": {
-    "php": "^8.1 | ^8.2 | ^8.3",
-    "illuminate/filesystem": "^10.0 | ^11.0",
-    "illuminate/support": "^10.0 | ^11.0",
-    "illuminate/auth": "^10.0 | ^11.0",
-    "doctrine/dbal": "^3.0"
-  },
-  "require-dev": {
-    "laravel/pint": "^1.0",
-    "phpunit/phpunit": "^10.0 | ^11.0",
-    "orchestra/testbench": "8.* | 9.*",
-    "mockery/mockery": "^1.1",
-    "phpstan/phpstan-phpunit": "^1.0"
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "CleaniqueCoders\\Blueprint\\Macro\\BlueprintMacroServiceProvider"
-      ]
-    }
-  },
-  "config": {
-    "allow-plugins": {
-      "pestphp/pest-plugin": true
-    }
-  }
+	"name": "cleaniquecoders/blueprint-macro",
+	"description": "Laravel Blueprint Macro",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Nasrul Hazim",
+			"email": "nasrulhazim.m@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"CleaniqueCoders\\Blueprint\\Macro\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"CleaniqueCoders\\Blueprint\\Macro\\Tests\\": "tests/"
+		}
+	},
+	"require": {
+		"php": "^8.1 | ^8.2 | ^8.3",
+		"illuminate/filesystem": "^10.0 | ^11.0",
+		"illuminate/support": "^10.0 | ^11.0",
+		"illuminate/auth": "^10.0 | ^11.0",
+		"doctrine/dbal": "^3.0"
+	},
+	"require-dev": {
+		"laravel/pint": "^1.0",
+		"phpunit/phpunit": "^10.0 | ^11.0",
+		"orchestra/testbench": "8.* | 9.*",
+		"mockery/mockery": "^1.1",
+		"phpstan/phpstan-phpunit": "^1.0"
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"CleaniqueCoders\\Blueprint\\Macro\\BlueprintMacroServiceProvider"
+			]
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"pestphp/pest-plugin": true
+		}
+	}
 }
