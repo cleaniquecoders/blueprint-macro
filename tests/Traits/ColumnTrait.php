@@ -2,7 +2,6 @@
 
 namespace CleaniqueCoders\Blueprint\Macro\Tests\Traits;
 
-use Doctrine\DBAL\Schema\Column;
 use Illuminate\Support\Facades\Schema;
 
 trait ColumnTrait
@@ -12,24 +11,46 @@ trait ColumnTrait
         $this->assertTrue(Schema::hasColumn($table, $column));
     }
 
-    public function assertColumnType(Column $column, string $type)
+    /**
+     * Assert column type matches the expected type.
+     *
+     * @param  array  $column  Column info array from Schema::getColumns()
+     * @param  string  $type  Expected type name (e.g., 'string', 'integer')
+     */
+    public function assertColumnType(array $column, string $type)
     {
-        $this->assertEquals($column->getType()->getName(), $type);
+        $this->assertEquals($type, $column['type_name']);
     }
 
-    public function assertColumnNullable(Column $column, bool $is_null)
+    /**
+     * Assert column nullable status.
+     *
+     * @param  array  $column  Column info array from Schema::getColumns()
+     * @param  bool  $isNullable  Expected nullable status
+     */
+    public function assertColumnNullable(array $column, bool $isNullable)
     {
-        $this->assertEquals(! $column->getNotNull(), $is_null);
+        $this->assertEquals($isNullable, $column['nullable']);
     }
 
-    public function assertColumnLength(Column $column, int $length)
+    /**
+     * Assert column length by parsing the type string.
+     *
+     * For SQLite, the type string includes the length, e.g., "varchar(255)".
+     *
+     * @param  array  $column  Column info array from Schema::getColumns()
+     * @param  int  $length  Expected length
+     */
+    public function assertColumnLength(array $column, int $length)
     {
-        $actual_length = $column->getLength() ?? $length;
-        $this->assertEquals($actual_length, $length);
-    }
+        // Try to extract length from the type string, e.g., "varchar(255)"
+        if (preg_match('/\((\d+)\)/', $column['type'], $matches)) {
+            $actualLength = (int) $matches[1];
+        } else {
+            // If no length in type string, use the expected length (same as original behavior)
+            $actualLength = $length;
+        }
 
-    public function assertColumnComment(Column $column, $comment)
-    {
-        $this->assertEquals($column->getComment(), $comment);
+        $this->assertEquals($length, $actualLength);
     }
 }

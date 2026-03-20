@@ -4,10 +4,11 @@ namespace CleaniqueCoders\Blueprint\Macro\Tests;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Schema\Blueprint;
+use PHPUnit\Framework\Attributes\Test;
 
 class AvailableMacroTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_has_blueprint_macros()
     {
         $macros = [
@@ -26,7 +27,7 @@ class AvailableMacroTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function it_has_eloquent_builder_macros()
     {
         $macros = [

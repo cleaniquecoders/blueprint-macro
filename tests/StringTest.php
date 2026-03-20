@@ -3,6 +3,7 @@
 namespace CleaniqueCoders\Blueprint\Macro\Tests;
 
 use CleaniqueCoders\Blueprint\Macro\Tests\Traits\TableTrait;
+use PHPUnit\Framework\Attributes\Test;
 
 class StringTest extends TestCase
 {
@@ -14,13 +15,13 @@ class StringTest extends TestCase
         $this->fetchTables();
     }
 
-    /** @test */
+    #[Test]
     public function it_has_strings_table()
     {
         $this->assertHasTable('strings');
     }
 
-    /** @test */
+    #[Test]
     public function it_has_strings_columns()
     {
         $this->assertHasColumn('strings', 'label');
@@ -29,13 +30,13 @@ class StringTest extends TestCase
         $this->assertHasColumn('strings', 'reference');
     }
 
-    /** @test */
+    #[Test]
     public function it_has_correct_columns_setup()
     {
-        $columns = $this->schema->listTableColumns('strings');
+        $columns = $this->getTableColumns('strings');
 
-        foreach ($columns as $column) {
-            $criteria = $this->getCriteria($column->getName());
+        foreach ($columns as $name => $column) {
+            $criteria = $this->getCriteria($name);
 
             $this->assertColumnType($column, $criteria['type']);
             $this->assertColumnNullable($column, $criteria['nullable']);
@@ -48,7 +49,7 @@ class StringTest extends TestCase
         switch ($column) {
             case 'label':
                 $criteria = [
-                    'type' => 'string',
+                    'type' => 'varchar',
                     'length' => 255,
                     'nullable' => true,
                     'comment' => 'label',
@@ -57,7 +58,7 @@ class StringTest extends TestCase
                 break;
             case 'name':
                 $criteria = [
-                    'type' => 'string',
+                    'type' => 'varchar',
                     'length' => 255,
                     'nullable' => true,
                     'comment' => 'name',
@@ -66,7 +67,7 @@ class StringTest extends TestCase
                 break;
             case 'code':
                 $criteria = [
-                    'type' => 'string',
+                    'type' => 'varchar',
                     'length' => 20,
                     'nullable' => true,
                     'comment' => 'Code',
@@ -75,7 +76,7 @@ class StringTest extends TestCase
                 break;
             case 'reference':
                 $criteria = [
-                    'type' => 'string',
+                    'type' => 'varchar',
                     'length' => 64,
                     'nullable' => true,
                     'comment' => 'Reference',
@@ -84,7 +85,7 @@ class StringTest extends TestCase
                 break;
             default:
                 $criteria = [
-                    'type' => 'string',
+                    'type' => 'varchar',
                     'length' => 255,
                     'nullable' => true,
                     'comment' => '',

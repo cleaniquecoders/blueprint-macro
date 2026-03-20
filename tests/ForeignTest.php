@@ -3,6 +3,7 @@
 namespace CleaniqueCoders\Blueprint\Macro\Tests;
 
 use Illuminate\Support\Facades\Schema;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * @todo test default & custom reference
@@ -11,31 +12,31 @@ use Illuminate\Support\Facades\Schema;
  */
 class ForeignTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_has_foreign_table()
     {
         $this->assertTrue(Schema::hasTable('foreign'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_default_foreign_key_name()
     {
         $this->assertTrue(Schema::hasColumn('foreign', 'user_id'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_custom_foreign_key_name()
     {
         $this->assertTrue(Schema::hasColumn('foreign', 'customer_id'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_foreign_key_unsignedInteger()
     {
         $this->assertEquals(Schema::getColumnType('foreign', 'user_id'), 'integer');
     }
 
-    /** @test */
+    #[Test]
     public function it_has_foreign_key_unsignedBigInteger()
     {
         $this->assertEquals(Schema::getColumnType('foreign', 'big_id'), 'integer');
