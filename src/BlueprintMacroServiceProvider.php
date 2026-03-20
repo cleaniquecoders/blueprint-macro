@@ -2,6 +2,7 @@
 
 namespace CleaniqueCoders\Blueprint\Macro;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider;
 
 class BlueprintMacroServiceProvider extends ServiceProvider
@@ -17,7 +18,7 @@ class BlueprintMacroServiceProvider extends ServiceProvider
             });
 
         /* A little hack to have Builder::hasMacro */
-        \Illuminate\Database\Eloquent\Builder::macro('hasMacro', function ($name) {
+        Builder::macro('hasMacro', function ($name) {
             return isset(static::$macros[$name]);
         });
 
@@ -30,7 +31,5 @@ class BlueprintMacroServiceProvider extends ServiceProvider
     /**
      * Register the application services.
      */
-    public function register()
-    {
-    }
+    public function register() {}
 }

@@ -31,13 +31,13 @@ class ForeignTest extends TestCase
     }
 
     #[Test]
-    public function it_has_foreign_key_unsignedInteger()
+    public function it_has_foreign_key_unsigned_integer()
     {
         $this->assertEquals(Schema::getColumnType('foreign', 'user_id'), 'integer');
     }
 
     #[Test]
-    public function it_has_foreign_key_unsignedBigInteger()
+    public function it_has_foreign_key_unsigned_big_integer()
     {
         $this->assertEquals(Schema::getColumnType('foreign', 'big_id'), 'integer');
     }

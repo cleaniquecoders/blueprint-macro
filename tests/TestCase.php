@@ -2,12 +2,16 @@
 
 namespace CleaniqueCoders\Blueprint\Macro\Tests;
 
+use CleaniqueCoders\Blueprint\Macro\BlueprintMacroServiceProvider;
+use CleaniqueCoders\Blueprint\Macro\Tests\Stubs\ServiceProvider;
+use Illuminate\Foundation\Application;
+
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     /**
      * Setup the test environment.
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -25,15 +29,15 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app)
     {
         return [
-            \CleaniqueCoders\Blueprint\Macro\BlueprintMacroServiceProvider::class,
-            \CleaniqueCoders\Blueprint\Macro\Tests\Stubs\ServiceProvider::class,
+            BlueprintMacroServiceProvider::class,
+            ServiceProvider::class,
         ];
     }
 
     /**
      * Define environment setup.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param  Application  $app
      */
     protected function getEnvironmentSetUp($app)
     {
